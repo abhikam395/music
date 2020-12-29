@@ -1,0 +1,39 @@
+input::placeholder{
+    color: rebeccapurple;
+}
+
+.search{
+    
+    &-icon{
+        cursor: pointer;
+    }
+
+    &-box{
+        display: flex;
+        align-items: center;
+        margin: 0px 100px;
+        border-radius: 25px;
+        border: 1px solid black;
+        padding: 10px;
+
+        &--size{
+            min-width: 40%;
+            height: 50px;
+        }  
+    }
+
+    &-input{
+
+        margin-left: 10px;
+        border: none;
+
+        &--size{
+            width: 100%;
+            height: 100%;
+        }
+
+        &--theme{
+
+        }
+    }
+}
