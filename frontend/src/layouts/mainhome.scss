@@ -1,0 +1,12 @@
+.main{
+    flex: 4;
+
+    &--size{
+        height: 100vh;
+        min-width: 80vw;
+    }
+
+    &--theme{
+        // background-color: rebeccapurple;
+    }
+}

@@ -1,0 +1,12 @@
+.menu{
+    // flex: 1;
+
+    &--theme{
+        background-color: #F2F2F2;
+    }
+
+    &--size{
+        height: 100vh;
+        min-width: 20vw
+    }
+}

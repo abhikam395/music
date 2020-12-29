@@ -1,0 +1,13 @@
+.music-player{
+    position: fixed;
+    bottom: 0;
+
+    &--size{
+        height: 100px;
+        width: 100%;
+    }
+
+    &--theme{
+        background-color: #0012B6;
+    }
+}
