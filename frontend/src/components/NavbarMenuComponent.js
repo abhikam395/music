@@ -28,9 +28,13 @@ export default class NavbarMenuComponent extends Component{
 
     render(){
         return(
-            <ul className="navbar__menus">
-                { this.getMenus(this.state.menus) }
-            </ul>
+            <div className className="navbar__left">
+                <ul className="navbar__menus">
+                    { this.getMenus(this.state.menus) }
+                </ul>
+                <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" 
+                    className="navbar__profile navbar__profile--size"/>
+            </div>
         )
     }
 }

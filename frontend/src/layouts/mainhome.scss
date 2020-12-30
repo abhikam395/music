@@ -1,12 +1,18 @@
 .main{
-    flex: 4;
+    padding-bottom: 500px;
+    overflow-y: scroll;
 
     &--size{
         height: 100vh;
-        min-width: 85vw;
+        width: 85vw;
     }
 
-    &--theme{
-        // background-color: rebeccapurple;
+    // &--theme{
+    //     // background-color: rebeccapurple;
+    // }
+
+    &__horizontal{
+        display: flex;
+        padding-bottom: 150px;
     }
 }

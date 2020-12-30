@@ -22,7 +22,7 @@ export default class NavbarLayout extends Component{
 
     render(){
         return(
-            <div className="navbar navbar--size navbar--theme">
+            <div className="navbar navbar--size navbar--theme center">
                 <SearchBarComponent/>
                 <NavbarMenuComponent/>
             </div>

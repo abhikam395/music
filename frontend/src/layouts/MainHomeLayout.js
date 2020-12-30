@@ -11,12 +11,38 @@ const NavbarLayout = Loadable({
     }
 })
 
+const RecommendationAlbumsLayout = Loadable({
+    loader: () => import('../layouts/recommendation/RecommendationAlbumsLayout'),
+    loading(){
+        return <LoadingComponent/>
+    }
+})
+
+const TopSongsLayout = Loadable({
+    loader: () => import('../layouts/songs/TopSongsLayout'),
+    loading(){
+        return <LoadingComponent/>
+    }
+})
+
+const  RecentPlayList = Loadable({
+    loader: () => import('./recentplaylist'),
+    loading(){
+        return <LoadingComponent/>
+    }
+})
+
 export default class MainHomeLayout extends Component{
 
     render(){
         return (
             <div className="main main--size main--theme">
                 <NavbarLayout/>
+                <RecommendationAlbumsLayout/>
+                <div className="main__horizontal">
+                    <TopSongsLayout/>
+                    <RecentPlayList/>
+                </div>
             </div>
         )
     }
