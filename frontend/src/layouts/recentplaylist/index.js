@@ -3,7 +3,14 @@ import './index.scss';
 
 import Loadable from 'react-loadable';
 import LoadingComponent from '../../components/LoadingComponent';
+import { connect } from 'react-redux';
+import { getRecentPlaylist } from './../../../../apis/songsApi';
 
+import { setCurrentSong } from './../../../store/actions/songsAction';
+
+/**
+ * PlaylistSong component
+ */
 const PlaylistSong = Loadable({
     loader: () => import('./PlaylistSong'),
     loading(){
@@ -11,24 +18,13 @@ const PlaylistSong = Loadable({
     }
 })
 
-export default class RecentPlayList extends Component{
+/**
+ * component class
+ */
+class RecentPlayList extends Component{
 
-    constructor(){
-        super();
-        this.state = {
-            recentSongs: [
-                {name: 'Let me love you', duration: '4:13', isPlaying: false, 
-                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'},
-                {name: 'Let me love you', duration: '4:13', isPlaying: false, 
-                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'},
-                {name: 'Let me love you', duration: '4:13', isPlaying: false, 
-                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'},
-                {name: 'Let me love you', duration: '4:13', isPlaying: false, 
-                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'},
-                {name: 'Let me love you', duration: '4:13', isPlaying: false, 
-                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'},
-            ]
-        }
+    componentDidMount(){
+        getRecentPlaylist();
     }
 
     getRecentPlaylist(playlist){
@@ -36,7 +32,7 @@ export default class RecentPlayList extends Component{
     }
 
     getPlaylistItem(song, index){
-        return <PlaylistSong key={index} song={song}/>
+        return <PlaylistSong key={index} song={song} setCurrentSong={this.props.setCurrentSong}/>
     }
 
     render(){
@@ -44,9 +40,25 @@ export default class RecentPlayList extends Component{
             <div>
                 <h3>Recent Playlist</h3>
                 <ul className="recent__songs recent__songs--size">
-                    {this.getRecentPlaylist(this.state.recentSongs)}
+                    {this.getRecentPlaylist(this.props.recentPlaylist)}
                 </ul>
             </div>
         )
     }
 }
+
+const mapStateToProps = function(store){
+    return {
+        recentPlaylist: store.songsState.recentPlaylist
+    }
+}
+
+const mapDispatchToProps = function(dispatch){
+    return {
+        setCurrentSong: function(song){
+            dispatch(setCurrentSong(song))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecentPlayList)

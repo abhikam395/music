@@ -2,31 +2,31 @@ import React, { Component, Fragment } from 'react';
 import './mainhome.scss'
 
 import Loadable from 'react-loadable';
-import LoadingComponent from '../components/LoadingComponent';
+import LoadingComponent from './../../components/LoadingComponent';
 
 const NavbarLayout = Loadable({
-    loader: () => import('../layouts/navbar/NavbarLayout'),
+    loader: () => import('./../navbar/NavbarLayout'),
     loading(){
         return <LoadingComponent/>
     }
 })
 
 const RecommendationAlbumsLayout = Loadable({
-    loader: () => import('../layouts/recommendation/RecommendationAlbumsLayout'),
+    loader: () => import('./../recommendation/RecommendationAlbumsLayout'),
     loading(){
         return <LoadingComponent/>
     }
 })
 
 const TopSongsLayout = Loadable({
-    loader: () => import('../layouts/songs/TopSongsLayout'),
+    loader: () => import('./../songs/TopSongsLayout'),
     loading(){
         return <LoadingComponent/>
     }
 })
 
 const  RecentPlayList = Loadable({
-    loader: () => import('./recentplaylist'),
+    loader: () => import('./../recentplaylist'),
     loading(){
         return <LoadingComponent/>
     }

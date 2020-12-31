@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './musicplayer.scss';
 
+import { connect } from 'react-redux';
+import FullScreenComponent from './FullScreenComponent';
+
 import { 
     SkipNext, 
     SkipPrevious, 
@@ -11,28 +14,48 @@ import {
     Fullscreen 
 } from '@material-ui/icons';
 
-export default class MusicPlayerComponent extends Component{
+class MusicPlayerComponent extends Component{
 
     constructor(){
         super();
         this.state = {
-            song: {
-                name: 'Shape of you',
-                singer: 'Ed-Sheeran',
-                currentPlay: '2:30',
-                totalPlay: '6:00'
-            }
+            fullScreenMode: false
         }
+
+        document.addEventListener('keyup', (e) => {
+            if(e.keyCode == 27)
+                this.setState({
+                    fullScreenMode: false
+                })
+        })
+    }
+
+    fullScreenModeOn(){
+        this.setState({
+            fullScreenMode: true
+        })
+    }
+
+    fullScreenModeOff(status){
+        this.setState({
+            fullScreenMode: !status
+        })
     }
 
     render(){
-        let {name, singer, currentPlay, totalPlay} = this.state.song;
+        if(!this.props.currentSong)
+            return <div></div> 
+        else if (this.state.fullScreenMode)
+            return <FullScreenComponent 
+                    song={this.props.currentSong} 
+                    listener={this.fullScreenModeOff.bind(this)}/>
 
+        let {name, singer, duration, isPlaying, image } = this.props.currentSong;
 
         return(
             <div className="music-player music-player--size music-player--theme">
                 <div className="music-player__left">
-                    <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" 
+                    <img src={image} 
                         className="music-player__image"/>
                     <div className="music-player__info">
                         <h4 className="music-player__songname">{name}</h4>
@@ -44,13 +67,13 @@ export default class MusicPlayerComponent extends Component{
                     <PlayCircleFilled id="music-player__play-pause"/>
                     <SkipNext id="music-player__next"/>
                     <div className="music-player__songcontroller">
-                        <span>{currentPlay}</span>
+                        <span>0:0</span>
                         <input type="range" 
                             min="1" 
                             max="100" 
                             // value="50" 
                             id="music-player__song-slider"/>
-                        <span>{totalPlay}</span>    
+                        <span>{duration}</span>    
                     </div>
 
                 </div>    
@@ -63,9 +86,19 @@ export default class MusicPlayerComponent extends Component{
                             id="music-player__voice-slider"/>
                     <FavoriteBorder id="music-player__favorite"/>
                     <Repeat id="music-player__repeat"/>
-                    <Fullscreen id="music-player__fullscreen"/>
+                    <Fullscreen id="music-player__fullscreen" 
+                        onClick={this.fullScreenModeOn.bind(this)}/>
                 </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = function(store){
+    console.log(store.songsState.currentSong)
+    return{
+        currentSong: store.songsState.currentSong
+    }
+}
+
+export default connect(mapStateToProps)(MusicPlayerComponent);

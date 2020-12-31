@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './menuhome.scss';
 
 import { connect } from 'react-redux';
-import { getMenus } from './../../../apis/homeApi';
+import { getMenus } from '../../../../apis/homeApi';
 
 class MenuHomeLayout extends Component{
 

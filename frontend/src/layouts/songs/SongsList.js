@@ -5,7 +5,8 @@ import Loadable from 'react-loadable';
 import LoadingComponent from '../../components/LoadingComponent';
 import { connect } from 'react-redux';
 
-import { getTopSongs } from './../../../../apis/topSongsApi';
+import { setCurrentSong } from './../../../store/actions/songsAction';
+import { getTopSongs } from './../../../../apis/songsApi';
 
 const SongItem  = Loadable({
     loader: () => import('./SongItem'),
@@ -15,9 +16,6 @@ const SongItem  = Loadable({
 })
 
 class SongsList extends Component{
-    constructor(props){
-        super(props);
-    }
 
     componentDidMount(){
         getTopSongs();
@@ -28,7 +26,7 @@ class SongsList extends Component{
     }
 
     getSongItem(song, index){
-        return <SongItem key={index} song={song}/>
+        return <SongItem key={index} song={song} setCurrentSong={this.props.setCurrentSong}/>
     }
 
 
@@ -43,8 +41,16 @@ class SongsList extends Component{
 
 const mapStateToProps  = function(store){
     return {
-        songs: store.topSongsState.topSongs
+        songs: store.songsState.topSongs
     }
 }
 
-export default connect(mapStateToProps)(SongsList);
+const mapDispatchToProps = function(dispatch){
+    return {
+        setCurrentSong: function(song){
+            dispatch(setCurrentSong(song))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SongsList);

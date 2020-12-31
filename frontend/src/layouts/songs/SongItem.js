@@ -55,7 +55,8 @@ export default class SongItem extends Component{
 
         return(
             <li className="song__item song__item--size song__item--theme" 
-                key={this.props.key}>
+                key={this.props.key}
+                onClick={this.props.setCurrentSong.bind(this, this.props.song)}>
                 <img src={image} className="song__image"/>
                 <div>
                     <h5 className="song__name">{name}</h5>

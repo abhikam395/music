@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import './recommendationalbums.scss';
 
-import { getRecommendedAlbums } from '../../../../apis/recommendationAlbumsApi';
+import { getRecommendedAlbums } from '../../../../apis/songsApi';
 import { connect } from 'react-redux';
 
-class RecommendationAlbumsLayout extends Component{
+import { setCurrentSong } from '../../../store/actions/songsAction';
 
-    constructor(props){
-        super(props);
-    }
+class RecommendationAlbumsLayout extends Component{
 
     componentDidMount(){
         getRecommendedAlbums();
@@ -19,7 +17,8 @@ class RecommendationAlbumsLayout extends Component{
     }
 
     getAlbumItem(album, index){
-        return  <li className="album album--size" key={index}>
+        return  <li className="album album--size" 
+                key={index} onClick={this.props.setCurrentSong.bind(this, album)}>
                     <img src={album.image} className="album__image album__image--size"/>
                     <h4 className="album__name">{album.name}</h4>
                     <h5 className="album__singer">{album.singer}</h5>
@@ -38,10 +37,18 @@ class RecommendationAlbumsLayout extends Component{
     }
 }
 
-const mapStateToAction = function(store){
+const mapStateToProps = function(store){
     return {
-        albums: store.recommendationAlbumState.albums
+        albums: store.songsState.recommendedAlbums
     }
 }   
 
-export default connect(mapStateToAction)(RecommendationAlbumsLayout);
+const mapDispatchToProps = function(dispatch){
+    return {
+        setCurrentSong: function(song){
+            dispatch(setCurrentSong(song))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecommendationAlbumsLayout);

@@ -1,12 +1,10 @@
 import { createStore, combineReducers } from 'redux';
-import {homeReducer} from './reducers/homeReducer';
-import {recommendationReducer } from './reducers/recommendationReducer';
-import { topSongsReducer } from './reducers/topSongsReducer';
+import { homeReducer} from './reducers/homeReducer';
+import { songsReducer } from './reducers/songsReducer';
 
 const reducers = combineReducers({
-    homeState: homeReducer,
-    recommendationAlbumState: recommendationReducer,
-    topSongsState: topSongsReducer
+    songsState: songsReducer,
+    homeState: homeReducer
 })
 
 export default createStore(reducers);

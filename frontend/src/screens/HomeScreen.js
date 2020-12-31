@@ -5,14 +5,14 @@ import Loadable from 'react-loadable';
 import LoadingComponent from '../components/LoadingComponent';
 
 const MenuHomeLayout = Loadable({
-        loader: () => import('../layouts/MenuHomeLayout'),
+        loader: () => import('../layouts/home/MenuHomeLayout'),
         loading(){
             return <LoadingComponent/>
         }
     });
 
 const MainHomeLayout = Loadable({
-    loader: () => import('../layouts/MainHomeLayout'),
+    loader: () => import('../layouts/home/MainHomeLayout'),
     loading(){
         return <LoadingComponent/>
     }
