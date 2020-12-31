@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import './recommendationalbums.scss';
 
-export default class RecommendationAlbumsLayout extends Component{
+import { getRecommendedAlbums } from '../../../../apis/recommendationAlbumsApi';
+import { connect } from 'react-redux';
 
-    constructor(){
-        super();
-        this.state = {
-            albums: [ 
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-                {name: 'Spotlight', singer: 'VAV', image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'},
-            ]
-        }
+class RecommendationAlbumsLayout extends Component{
+
+    constructor(props){
+        super(props);
+    }
+
+    componentDidMount(){
+        getRecommendedAlbums();
     }
 
     getAlbumsList(albums){
@@ -35,9 +31,17 @@ export default class RecommendationAlbumsLayout extends Component{
             <div className="container container--size center">
                 <h2>Recommended Albums</h2>
                 <ul className="albums albums--size">
-                    { this.getAlbumsList(this.state.albums)}
+                    { this.getAlbumsList(this.props.albums)}
                 </ul>
             </div>
         )
     }
 }
+
+const mapStateToAction = function(store){
+    return {
+        albums: store.recommendationAlbumState.albums
+    }
+}   
+
+export default connect(mapStateToAction)(RecommendationAlbumsLayout);

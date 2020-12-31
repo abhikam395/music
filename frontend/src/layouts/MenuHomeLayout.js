@@ -1,29 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import './menuhome.scss'
+import React, { Component } from 'react';
+import './menuhome.scss';
 
-import { 
-    Home, 
-    Search, 
-    FavoriteBorder, 
-    Radio, 
-    Person, 
-    MusicNote, 
-    FiberManualRecord, 
-    Album } 
-    from '@material-ui/icons';
+import { connect } from 'react-redux';
+import { getMenus } from './../../../apis/homeApi';
 
-export default class MenuHomeLayout extends Component{
+class MenuHomeLayout extends Component{
 
-    constructor(){
-        super();
-        this.state = { 
-            menus: [{name: 'Home', icon: Home}, {name: 'Browse', icon: Search}, 
-                {name: 'Radio', icon: Radio}, {name: 'Favorites', icon: FavoriteBorder}
-            ],
-            libraryMenus: [{name: 'Artists', icon: Person}, {name: 'Songs', icon: MusicNote}, {name: 'Album', icon: Album}],
-            yourFavorites: [{name: 'Believer', icon: FiberManualRecord}, {name: 'Sorry', icon: FiberManualRecord}]
-    };
-        // this.getMenus = this.getMenus.bind(this);
+    constructor(props){
+        super(props);
+    }
+
+    componentDidMount(){
+        getMenus();
     }
 
     getMenus(menus){
@@ -46,17 +34,27 @@ export default class MenuHomeLayout extends Component{
            <div className="menu menu--size menu--theme">
                <h1>Music</h1>
                <ul className="menu__list">
-                   { this.getMenus(this.state.menus)}
+                   { this.getMenus(this.props.menu)}
                </ul>
                <h5 className="menu__label">YOUR LIBRARY</h5>
                <ul className="menu__list">
-                   { this.getMenus(this.state.libraryMenus)}
+                   { this.getMenus(this.props.libraryMenu)}
                </ul>
                <h5 className="menu__label">YOUR FAVORITES</h5>
                <ul className="menu__list">
-                   { this.getMenus(this.state.yourFavorites)}
+                   { this.getMenus(this.props.favoriteMenu)}
                </ul>
            </div>
        )
     }
 }
+
+const mapStateToProps = function(store){
+    return {
+        menu: store.homeState.menu,
+        libraryMenu: store.homeState.libraryMenu,
+        favoriteMenu: store.homeState.favoriteMenu
+    }
+}
+
+export default connect(mapStateToProps)(MenuHomeLayout);
