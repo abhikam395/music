@@ -4,6 +4,8 @@ import './home.scss'
 import Loadable from 'react-loadable';
 import LoadingComponent from '../components/LoadingComponent';
 
+import { connect } from 'react-redux';
+
 const MenuHomeLayout = Loadable({
         loader: () => import('../layouts/home/MenuHomeLayout'),
         loading(){
@@ -25,15 +27,34 @@ const MusicPlayerComponent = Loadable({
     }
 })
 
-export default class HomeScreen extends Component{
+class HomeScreen extends Component{
     
     render(){
-        return(
-           <div className="home home--size home--theme">
-               <aside> <MenuHomeLayout/> </aside>
-               <main> <MainHomeLayout/> </main>
-               <MusicPlayerComponent/>
-           </div>
-       )
+        if(this.props.currentSong){
+            return(
+                <div className="home home--size home--theme">
+                    <aside> <MenuHomeLayout/> </aside>
+                    <main> <MainHomeLayout/> </main>
+                    <MusicPlayerComponent/>
+                </div>
+            )
+        }
+        else{
+            return(
+                <div className="home home--size home--theme">
+                    <aside> <MenuHomeLayout/> </aside>
+                    <main> <MainHomeLayout/> </main>
+                </div>
+            )
+        }
     }
 }
+
+const mapStateToProps = function(store){
+    return{
+        currentSong: store.songsState.currentSong
+    }
+}
+
+export default connect(mapStateToProps)(HomeScreen);
+
