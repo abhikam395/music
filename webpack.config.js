@@ -5,7 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: '/frontend/src/app.js',
-    // exclude:path.resolve(__dirname, "node_modules"),
+    devServer: {
+      historyApiFallback:true
+    },
     plugins: [
         new MiniCssExtractPlugin({
             linkType: 'text/css',
