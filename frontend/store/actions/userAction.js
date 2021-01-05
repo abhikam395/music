@@ -1,4 +1,4 @@
-import { SET_USERS, GET_USERS, DELETE_USER  } from './actions-types';
+import { SET_USERS, ADD_USER, DELETE_USER  } from './actions-types';
 
 export function set(users){
     return {
@@ -9,9 +9,10 @@ export function set(users){
     }
 }
 
-export function get(){
+export function add(user){
     return {
-        type: GET_USERS,
+        type: ADD_USER,
+        data: user
     }
 }
 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './adduser.scss';
 
-export default class AddUserLayout extends Component{
+import { connect } from 'react-redux';
+import { add } from './../../../store/actions/userAction';
+
+class AddUserLayout extends Component{
     constructor(){
       super();
       this.state = {
@@ -10,7 +13,7 @@ export default class AddUserLayout extends Component{
             name: null,
             email: null,
             password: null,
-            role: 'User'
+            role: 'user'
           },
           errors: {
             name: null,
@@ -22,7 +25,7 @@ export default class AddUserLayout extends Component{
 
     roleOptions(){
       return this.state.options.map((option, index) => 
-        <option value={index} key={index}>{option}</option>)
+        <option value={option} key={index}>{option}</option>)
     }
 
     save(e){
@@ -37,8 +40,12 @@ export default class AddUserLayout extends Component{
       if(password == null  || password.length < 4)
         this.setState({errors:  
             Object.assign(this.state.errors, {password: {message: 'Minimum contains 5 characters'}}) })
-      if(name && email && password)
-        console.log(true)     
+
+      if(name && email && password){
+          let user = this.state.user;
+          this.props.addUser(user);
+          this.props.unmount();
+      }
     }
 
     //bind username on inputchange
@@ -120,7 +127,7 @@ export default class AddUserLayout extends Component{
             {passwordError()}  
             <label className="adduser-label">Role</label>
             <select className="adduser-select" 
-              onSelect={this.setRole.bind(this)} >
+              onChange={this.setRole.bind(this)} >
               {this.roleOptions()}
             </select>
             <button className="adduser-button" type="button" 
@@ -129,3 +136,13 @@ export default class AddUserLayout extends Component{
       )
     }
 }
+
+const mapDispatchToProps = function(dispatch){
+  return {
+    addUser: function(user){
+      dispatch(add(user))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddUserLayout);

@@ -11,8 +11,10 @@ import { Table,
         TableHead, 
         TableRow, 
         Paper, 
-        withStyles 
+        withStyles,
 } from '@material-ui/core';
+
+import { Alert, Pagination, PaginationItem } from '@material-ui/lab';
 
 import AddUserLayout from '../layouts/admin/AddUserLayout'
 
@@ -24,6 +26,20 @@ const users = [
     {id: 3, name: 'Rohit', email: 'rohit@gmail.com', role: 'user'},
     {id: 4, name: 'Gourav', email: 'gourav@gmail.com', role: 'user'},
     {id: 5, name: 'Kishan', email: 'kishan@gmail.com', role: 'admin'},
+    {id: 7, name: 'Abhishek', email: 'abhikam@gmail.com', role: 'user'},
+    {id: 8, name: 'Sanu', email: 'sanu@gmail.com', role: 'user'},
+    {id: 9, name: 'Rohit', email: 'rohit@gmail.com', role: 'user'},
+    {id: 10, name: 'Gourav', email: 'gourav@gmail.com', role: 'user'},
+    {id: 11, name: 'Kishan', email: 'kishan@gmail.com', role: 'admin'},
+    {id: 12, name: 'Sanu', email: 'sanu@gmail.com', role: 'user'},
+    {id: 13, name: 'Rohit', email: 'rohit@gmail.com', role: 'user'},
+    {id: 14, name: 'Gourav', email: 'gourav@gmail.com', role: 'user'},
+    {id: 15, name: 'Kishan', email: 'kishan@gmail.com', role: 'admin'},
+    {id: 16, name: 'Kishan', email: 'kishan@gmail.com', role: 'admin'},
+    {id: 17, name: 'Sanu', email: 'sanu@gmail.com', role: 'user'},
+    {id: 18, name: 'Rohit', email: 'rohit@gmail.com', role: 'user'},
+    // {id: 19, name: 'Gourav', email: 'gourav@gmail.com', role: 'user'},
+    // {id: 20, name: 'Kishan', email: 'kishan@gmail.com', role: 'admin'},
 ]
 
 const StyledTableCell = withStyles((theme) => ({
@@ -47,7 +63,8 @@ root: {
 const types = {
     CREATE: 'CREATE',
     CLEAR: 'CLEAR',
-    DELETE: 'DELETE'
+    DELETE: 'DELETE',
+    CREATED: 'CREATED'
 }
 
 class UserScreen extends Component{
@@ -97,6 +114,13 @@ class UserScreen extends Component{
         this.setState({ type: types.CREATE })
     }
 
+    unmountAddUser(){
+        this.setState({type: null});
+        let userScreen = document.getElementsByClassName('user__table')[0];
+        userScreen.style.opacity = '1';
+        this.setState({type: types.CREATED});
+    }
+
     render(){
         let { type } = this.state;
         let { users } = this.props;
@@ -118,7 +142,16 @@ class UserScreen extends Component{
             if(type == types.CREATE){
                 let userScreen = document.getElementsByClassName('user__table')[0];
                 userScreen.style.opacity = '.5';
-                return <AddUserLayout/>
+                return <AddUserLayout unmount={context.unmountAddUser.bind(context)}/>
+            }
+        }
+
+        function userCreated(){
+            if(type == types.CREATED){
+                setTimeout(() => {
+                    context.setState({type: null});
+                }, 1500)
+                return<Alert severity="success">User created</Alert>
             }
         }
 
@@ -140,6 +173,7 @@ class UserScreen extends Component{
 
         return(
            <div className="user user--size">
+               {userCreated()}
                {addUser()}
                <div className="user__header user__header--size">
                     {deleteButton()}
@@ -160,6 +194,10 @@ class UserScreen extends Component{
                         </TableBody>
                     </Table>
                 </TableContainer>
+                {this.props.users.length > 14 ? 
+                    <div className="user-pagination">
+                        <Pagination count={10} variant="outlined"/>
+                    </div>: null }
            </div>
         )
     }

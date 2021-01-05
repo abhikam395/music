@@ -1,6 +1,6 @@
 import { 
     DELETE_USER, 
-    GET_USERS, 
+    ADD_USER, 
     SET_USERS 
 } from './../actions/actions-types';
 
@@ -10,8 +10,11 @@ const initialState = {
 
 export function usersReducer(state = initialState, action){
     switch(action.type){
-        case GET_USERS:
-            return Object.assign({}, state, { users: state.users})
+        case ADD_USER:
+            let id = state.users[state.users.length - 1].id;
+            let user = Object.assign({}, action.data, {id: id + 1});
+            state.users.push(user);
+            return Object.assign({}, state);
         case SET_USERS:
             return Object.assign({}, state, {users: action.data.users})
         case DELETE_USER:

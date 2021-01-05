@@ -2,6 +2,7 @@
     display: flex;
     padding: 10px;
     flex-direction: column;
+    align-items: center;
 
     &--size{
         width: 80%;
@@ -68,4 +69,8 @@
         // background-color: #1e88e5;
         // color: white;
     }
+}
+
+.user-pagination{
+    margin: 50px 0;
 }
