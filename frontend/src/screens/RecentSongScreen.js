@@ -3,6 +3,11 @@ import './recentsong.scss';
 
 export default class RecentSongScreen extends Component{
 
+    constructor(){
+        super();
+        console.log('RecentSongs')
+    }
+
     render(){
         return(
             <div>

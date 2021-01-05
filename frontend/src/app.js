@@ -5,6 +5,8 @@ import '../../backend/assets/scss/common.scss';
 
 import HomeScreen from './screens/HomeScreen';
 import AdminScreen from './screens/AdminScreen';
+import ErrorScreen from './screens/ErrorScreen';
+import SongsScreen from './screens/SongScreen';
 
 import store from './../store';
 import { Provider } from 'react-redux';
@@ -16,6 +18,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={HomeScreen}/>
                 <Route path="/admin" component={AdminScreen}/>
+                <Route path="*" component={ErrorScreen} />
             </Switch>
         </BrowserRouter>
     </Provider>,
