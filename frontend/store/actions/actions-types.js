@@ -8,6 +8,7 @@ export const ADD_USER = "ADD_USER";
 export const SET_USERS = "SET_USERS";
 export const DELETE_USER = "DELETE_USER";
 export const GET_ADMIN_SONGS = "GET_ADMIN_SONGS";
+export const SET_ADMIN_SONGS = "SET_ADMIN_SONGS";
 export const GET_ADMIN_ARTISTS = "GET_ADMIN_ARTISTS";
 export const TIME = {
     TODAY: 'TODAY',

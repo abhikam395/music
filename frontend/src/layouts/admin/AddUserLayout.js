@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './adduser.scss';
 
 import { connect } from 'react-redux';
-import { add } from './../../../store/actions/userAction';
+import { add } from '../../../store/actions/userAction';
 
 class AddUserLayout extends Component{
     constructor(){

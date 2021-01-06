@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './admin.scss';
 
-import MenuLayout from './../layouts/admin/MenuLayout';
+import MenuLayout from '../layouts/admin/MenuLayout';
 
 import UserScreen from './UserScreen';
 import SongsScreen from './SongScreen';

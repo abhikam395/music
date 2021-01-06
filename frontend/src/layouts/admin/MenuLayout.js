@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './menu.scss';
 
-import { types } from './../../../utils/menuTypes';
+import { types } from '../../../utils/menuTypes';
 
 export default class MenuLayout extends Component{
 

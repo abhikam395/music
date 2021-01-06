@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { get } from './../../store/actions/adminSongsAction';
 
 import { connect } from 'react-redux';
+import SongCreateFormLayout from './../layouts/admin/SongCreateFormLayout';
 
 const songs = [
     {id: 1, name: 'Play data', singer: 'Acdsdfd..', 
@@ -31,7 +32,9 @@ class SongScreen extends Component{
 
     constructor(){
         super();
-        console.log('SongScreen')
+        this.state = {
+            addSong: false
+        }
     }
 
     componentDidMount(){
@@ -53,12 +56,21 @@ class SongScreen extends Component{
     }
 
     onCreate(){
-        // showForms
+        this.setState({addSong: true})
     }
 
     render(){
+        let context = this;
+        function addUser(){
+            let { addSong } = context.state;
+            if(addSong){
+                return <SongCreateFormLayout/>
+            }
+        }
+
         return(
             <Fragment>
+                {addUser()}
                <div className="admin-container">
                 <div className="row">
                     <Breadcrumbs aria-label="breadcrumb">
