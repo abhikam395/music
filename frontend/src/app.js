@@ -12,15 +12,18 @@ import store from './../store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'; 
 
+import SongCreateFormComponent from './components/SongCreateFormComponent';
+
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        {/* <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={HomeScreen}/>
                 <Route path="/admin" component={AdminScreen}/>
                 <Route path="*" component={ErrorScreen} />
             </Switch>
-        </BrowserRouter>
+        </BrowserRouter> */}
+        <SongCreateFormComponent></SongCreateFormComponent>
     </Provider>,
     document.getElementById('app')
 );

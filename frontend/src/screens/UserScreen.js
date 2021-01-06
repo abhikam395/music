@@ -128,13 +128,13 @@ class UserScreen extends Component{
 
         function deleteButton(){
             if(type == types.DELETE)
-                return <button className="user__button--delete" 
+                return <button className="user__button user__button--delete" 
                     onClick={context.onDelete.bind(context)}>Delete</button>
         }
 
         function clearButton(){
             if(type == types.DELETE)
-                return <button className="user__button--clear" 
+                return <button className="user__button user__button--clear" 
                     onClick={context.onClear.bind(context)}>Clear</button>
         }
 
@@ -178,7 +178,7 @@ class UserScreen extends Component{
                <div className="user__header user__header--size">
                     {deleteButton()}
                     {clearButton()}
-                    <button className="user__button--create" 
+                    <button className="user__button user__button--create" 
                         onClick={this.onCreate.bind(this)}>Create</button>
                 </div>
                 <TableContainer component={Paper}>

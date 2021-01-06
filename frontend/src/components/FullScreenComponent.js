@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import "./fullscreen.scss";
 
-import { toogleFullScreen } from '../../utils/fullScreenManager';
+import { toogleFullScreen } from '../../utils/musicplayer/fullScreenManager';
 
 export default class FullScreenComponent extends Component{
 

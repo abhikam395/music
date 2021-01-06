@@ -6,9 +6,6 @@ import MenuLayout from './../layouts/admin/MenuLayout';
 import UserScreen from './UserScreen';
 import SongsScreen from './SongScreen';
 import ArtistScreen from './ArtistScreen';
-import TopSongsScreen from './TopSongScreen';
-import RecentSongScreen from './RecentSongScreen';
-import RecommendedSongsScreen from './RecommendedSongsScreen';
 import ErrorScreen from './ErrorScreen';
 import { types } from './../../utils/menuTypes';
 
@@ -27,11 +24,7 @@ export default class AdminScreen extends Component{
             return <SongsScreen/>
         else if(type == types.ARTISTS)
             return <ArtistScreen/>
-        else if(type == types.TOPSONGS)
-            return <TopSongsScreen/>
-        else if(type == types.RECENTSONGS)
-            return <RecentSongScreen/>    
-        return <RecommendedSongsScreen/>
+        else return <UserScreen/>
     }
 
     onMenuChange(menu){
@@ -42,7 +35,7 @@ export default class AdminScreen extends Component{
         let { currentMenuItem } = this.state;
 
         return (
-            <div className="admin">
+            <div className="admin admin--size">
                 <MenuLayout listener={this.onMenuChange.bind(this)}/>
                 {this.renderView(currentMenuItem)}
             </div>    

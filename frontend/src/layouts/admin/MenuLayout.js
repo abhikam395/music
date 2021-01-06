@@ -12,9 +12,6 @@ export default class MenuLayout extends Component{
                 {name: 'Users', type: types.USERS},
                 {name: 'Songs', type: types.SONGS},
                 {name: 'Artists', type: types.ARTISTS},
-                {name: 'Top Songs', type: types.TOPSONGS},
-                {name: 'Recent Songs', type: types.RECENTSONGS},
-                {name: 'Recommendation Songs', type: types.RECOMMENDATIONSONGS},
             ],
             selectedMenu: null
         }

@@ -3,7 +3,7 @@ import './musicplayer.scss';
 
 import { connect } from 'react-redux';
 import FullScreenComponent from './FullScreenComponent';
-import { getTimeInMin } from './../../utils/getTimeInMin';
+import { getTimeInMin } from './../../utils/musicplayer/getTimeInMin';
 
 import { 
     SkipNext, 
@@ -45,7 +45,7 @@ class MusicPlayerComponent extends Component{
         this.setState({ isPlaying: true, audio: new Audio(url)});
         setTimeout(() => {
             let round =  Math.round(this.state.audio.duration);
-            this.setState({max: round})
+            this.setState({max: String(round)})
             this.onPlay();
         }, 500)
     }
