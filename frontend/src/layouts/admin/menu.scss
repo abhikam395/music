@@ -1,0 +1,41 @@
+.admin-menu{
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-left: 50px;
+    width: 20%;
+    background-color:#1e88e5;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+
+    h1{
+        color: white;
+    }
+
+    &__item{
+        color: white;
+        padding: 10px 0;
+        cursor: pointer;
+
+        &:first-child{
+            background-color: white;
+            color: #1e88e5;
+            padding: 10px 2px;
+            width: 80%;
+        }
+
+        &:hover{
+            background-color: white;
+            color: #1e88e5;
+            padding: 10px 2px;
+            width: 80%;
+        }
+    }
+
+    &__list{
+        list-style: none;
+        margin-top:50px;
+    }
+}

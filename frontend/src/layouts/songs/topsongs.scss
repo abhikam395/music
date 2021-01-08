@@ -1,0 +1,14 @@
+.topsongs{
+    display: flex;
+    flex-direction: column;
+
+    &--size{
+        width: 50%;
+        // height: 100%;
+    }
+
+    &__header{
+        display: flex;
+        justify-content: space-between;
+    }
+}

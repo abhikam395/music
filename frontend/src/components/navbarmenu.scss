@@ -1,0 +1,28 @@
+.navbar{
+    &__menus{
+        display: flex;
+        list-style: none;
+    }
+
+    &__menu{
+        cursor: pointer;
+        margin-left: 30px;
+    }
+
+    &__left{
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+    }
+
+    &__profile{
+        border-radius: 20px;
+        margin-left: 30px;
+        cursor: pointer;
+
+        &--size{
+            height: 40px;
+            width: 40px;
+        }
+    }
+}
