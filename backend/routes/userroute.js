@@ -22,7 +22,6 @@ module.exports = function(app){
             }, res)
 
         }).catch(err => {
-            
             failureResponse({
                 message: err['errors'][0].message,
                 code: err['parent'].code

@@ -11,12 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Artist.belongsTo(models.User, {foreignKey: 'userId', as: 'user'})
     }
   };
   Artist.init({
-    name: DataTypes.STRING,
-    dob: DataTypes.STRING,
-    country: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     image: DataTypes.STRING
   }, {
     sequelize,
